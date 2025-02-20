@@ -20,6 +20,7 @@ public class Menu {
         System.out.println("\t[2] CONTACTOS:");
         System.out.println("\t[3] PERFIL");
         System.out.println("\t[0] CERRAR SESIÓN");
+        choiceMenu();
 
     }
 
@@ -42,8 +43,44 @@ public class Menu {
                 Login.register();
                 break;
             default:
+                System.out.println("Cerrando el programa...");
                 System.exit(0);
+        }
 
+    }
+
+    public static void choiceMenu(){
+        char choice=Input.inputMenu();
+        switch (choice){
+            case '1':
+                Login.login();
+                break;
+            case '2':
+                Login.register();
+                break;
+            case '3':
+                Login.register();
+                break;
+            default:
+                choiceLogin();
+        }
+
+    }
+
+    public static void choiceEvents(){
+        char choice=Input.inputMenu();
+        switch (choice){
+            case '1':
+                Login.login();
+                break;
+            case '2':
+                Login.register();
+                break;
+            case '3':
+                Login.register();
+                break;
+            default:
+                System.exit(0);
         }
 
     }

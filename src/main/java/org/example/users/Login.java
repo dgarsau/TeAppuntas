@@ -1,12 +1,34 @@
 package org.example.users;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Login {
 
     static Scanner entrada = new Scanner(System.in);
+    static ArrayList<User> users = new ArrayList<>();
 
     public static void login(){
+
+        boolean userexists = false;
+        do {
+            System.out.println("Introduce el nombre de usuario:");
+            String username = entrada.next();
+
+            for (User user : users) {
+                if (user.getUsername().equals(username)) {
+                    userexists = true;
+                }
+            }
+
+            if(!userexists){
+                System.out.println("El usuario no existe.");
+            }
+        }while(!userexists);
+
+
+
+        Menu.mainMenu();
 
     }
 
@@ -16,8 +38,22 @@ public class Login {
         String password = checkPassword();
         String email = checkEmail();
         System.out.println("Introduce tu nombre:");
-        String nombre = entrada.next();
-
+        String name = entrada.next();
+        System.out.println("Introduce tu número de teléfono:");
+        String phone = entrada.next();
+        boolean disability = checkDisability();
+        if(disability){
+            System.out.println("Introduce un tutor:");
+            String tutor = entrada.next();
+            users.add(new User(username, password, email, name, phone, disability, tutor));
+            System.out.println("Usuario creado");
+            System.out.println("Iniciando sesión...");
+        } else {
+            users.add(new User(username, password, email, name, phone, disability));
+            System.out.println("Usuario creado");
+            System.out.println("Iniciando sesión...");
+        }
+        Menu.mainMenu();
     }
 
     public static String checkUsername(){
